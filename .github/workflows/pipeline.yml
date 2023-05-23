@@ -23,6 +23,11 @@ jobs:
           CONFIG: ${{ inputs.config-file }}
           IMAGES: ${{ inputs.images }}
         run: |
+          echo "CONFIG::"
+          echo $CONFIG
+
+          echo "\nIMAGES::"
+          echo $IMAGES
           curl -s -H "Authorization: token $SECREL_FGAT" \
             -H "Accept: application/vnd.github.v3+json" \
             --request POST \
