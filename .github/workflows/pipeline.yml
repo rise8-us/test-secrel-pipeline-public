@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Secrel
+        env:
+          SECREL_FGAT: ${{ secrets.SECREL_FGAT }}
+          CONFIG: ${{ github.event.inputs.config-file }}
+          IMAGES: ${{ github.event.inputs.images }}
         run: |
-          curl -s -X POST -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/department-of-veterans-affairs/lighthouse-secrel-test-fixtures-2/actions/workflows/$WORKFLOW_FILE/dispatches -d "'{"ref": "v4", "inputs": $INPUTS }'"
+          curl -s -X POST -H "Authorization: token $SECREL_FGAT" -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline/workflows/pipeline.yml/dispatches -d "'{"ref": "v4", "inputs": {"config-file": $CONFIG, "images": $IMAGES} }'"
