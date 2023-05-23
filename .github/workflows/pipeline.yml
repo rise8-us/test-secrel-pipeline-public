@@ -1,7 +1,14 @@
 name: Secrel Public Interface
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      config-file:
+        required: true
+        type: string
+      images:
+        required: true
+        type: string
 
 jobs:
   call-secrel:
