@@ -9,6 +9,9 @@ on:
       images:
         required: true
         type: string
+    secrets:
+      SECREL_FGAT:
+        required: true
 
 jobs:
   call-secrel:
