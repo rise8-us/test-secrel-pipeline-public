@@ -31,5 +31,5 @@ jobs:
           curl -s -H "Authorization: token $SECREL_FGAT" \
             -H "Accept: application/vnd.github.v3+json" \
             --request POST \
-            "https://api.github.com/repos/department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline/actions/workflows/pipeline.yml/dispatches" \
-            -d "{\"ref\": \"API-26591-public-interface\", \"inputs\": {\"config-file\": \"$CONFIG\", \"images\": \"$IMAGES\"} }"
+            "https://api.github.com/repos/department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline/dispatches" \
+            -d "{\"event_type\": \"secrel\", \"client_payload\": {\"config-file\": \"$CONFIG\", \"images\": \"$IMAGES\"} }"
