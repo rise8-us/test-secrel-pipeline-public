@@ -26,10 +26,10 @@ jobs:
           echo "CONFIG::"
           echo $CONFIG
 
-          echo "\nIMAGES::"
+          echo "IMAGES::"
           echo $IMAGES
           curl -s -H "Authorization: token $SECREL_FGAT" \
             -H "Accept: application/vnd.github.v3+json" \
             --request POST \
             "https://api.github.com/repos/department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline/actions/workflows/pipeline.yml/dispatches" \
-            -d "'{\"ref\": \"v4\", \"inputs\": {\"config-file\": \"$CONFIG\", \"images\": \"$IMAGES\"} }'"
+            -d "{\"ref\": \"v4\", \"inputs\": {\"config-file\": \"$CONFIG\", \"images\": \"$IMAGES\"} }"
