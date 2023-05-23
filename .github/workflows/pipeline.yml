@@ -17,8 +17,8 @@ jobs:
       - name: Run Secrel
         env:
           SECREL_FGAT: ${{ secrets.SECREL_FGAT }}
-          CONFIG: ${{ github.event.inputs.config-file }}
-          IMAGES: ${{ github.event.inputs.images }}
+          CONFIG: ${{ inputs.config-file }}
+          IMAGES: ${{ inputs.images }}
         run: |
           curl -s -H "Authorization: token $SECREL_FGAT" \
             -H "Accept: application/vnd.github.v3+json" \
