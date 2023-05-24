@@ -17,19 +17,15 @@ jobs:
   call-secrel:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Secrel Code
+        uses: actions/checkout@v3
+        with:
+          repository: department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline
+          ref: main
+          token: ${{ secrets.SECREL_FGAT }}
       - name: Run Secrel
-        env:
-          SECREL_FGAT: ${{ secrets.SECREL_FGAT }}
-          CONFIG: ${{ inputs.config-file }}
-          IMAGES: ${{ inputs.images }}
-        run: |
-          echo "CONFIG::"
-          echo $CONFIG
-
-          echo "IMAGES::"
-          echo $IMAGES
-          curl -s -H "Authorization: token $SECREL_FGAT" \
-            -H "Accept: application/vnd.github.v3+json" \
-            --request POST \
-            "https://api.github.com/repos/department-of-veterans-affairs/lighthouse-tornado-secrel-pipeline/dispatches" \
-            -d "{\"event_type\": \"secrel\", \"client_payload\": {\"config-file\": \"$CONFIG\", \"images\": \"$IMAGES\"} }"
+        uses: ./.github/workflows/pipeline.yml
+        with:
+          config-file: ${{ inputs.config-file }}
+          images: ${{ inputs.images }}
+        secrets: inherit
