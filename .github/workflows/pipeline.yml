@@ -28,4 +28,3 @@ jobs:
         with:
           config-file: ${{ inputs.config-file }}
           images: ${{ inputs.images }}
-        secrets: inherit
